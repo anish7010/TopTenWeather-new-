@@ -43,3 +43,7 @@ function addFav(){
 	xmlhttp.send();
 }
 
+function getFav() {
+	
+}
+

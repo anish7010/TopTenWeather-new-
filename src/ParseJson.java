@@ -52,10 +52,13 @@ public class ParseJson extends HttpServlet {
 			System.out.println("You have exceeded your limit");
 		}
 		
+		try {
 		FileWriter jsonFile = new FileWriter("/home/anish7010/Documents/favorites.json");
 		jsonFile.write(jarray.toString());
 		System.out.println(json.toString());
-		jsonFile.close();
+		}catch(Exception e){
+			System.out.println("Please enter a valid path where you want to store your json");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

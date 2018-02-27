@@ -15,7 +15,6 @@ function getData() {
 			conditions = result.weather[0].main;
 			longitude = result.coord.lon;
 			latitude = result.coord.lat;
-			
 			var html = "<div class=\"card\" style=\"width: 18rem;\">"+
 			  			"<div class=\"card-body\">"+
 			  			"<h5 class=\"card-title\">"+city+", "+country+"</h5>"+
@@ -24,17 +23,7 @@ function getData() {
 			  			"</div>"+
 			  			"</div>" ;
 			  			
-			document.getElementById("content").innerHTML = html;
-			
-			/*document.getElementById("content").innerHTML ="City : "+city+", "+country+"<br>" +
-					"Temperature : "+temperature+"<br>" +
-					"Conditions : "+conditions+"<br>"+
-					"Longitude : "+longitude+"<br>"+
-					"Latitude : "+latitude+"<br>"+
-					"<button id=\"button\" onclick = \"addFav()\" type = \"button\">Add to favorites</button>";*/		
-		}
-		else{
-			//alert(this.readyState);
+			document.getElementById("content").innerHTML = html;		
 		}
 	};
 	xhttp.open("GET", link, true);
@@ -42,7 +31,6 @@ function getData() {
 }
 
 function addFav(){
-	alert("In fav");
 	var xmlhttp = new XMLHttpRequest();
 	
 	xmlhttp.onreadystatechange = function(){
@@ -50,8 +38,7 @@ function addFav(){
 			document.getElementById("favorites").innerHTML = xmlhttp.responseText;
 		}
 	};
-	alert(city);
-	var values = "city=" +city+ "&country=" +country+ "&temperature=" +temperature+ "conditions=" +conditions+ "&longitude=" +longitude+ "&latitude="+latitude;
+	var values = "city=" +city+ "&country=" +country+ "&temperature=" +temperature+ "&conditions=" +conditions+ "&longitude=" +longitude+ "&latitude="+latitude;
 	xmlhttp.open('GET',"http://localhost:8080/TopTen/favorite?"+values, true);
 	xmlhttp.send();
 }

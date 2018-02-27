@@ -20,7 +20,7 @@
 <script defer
 	src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
-<title>Insert title here</title>
+<title>TopTenWeather</title>
 </head>
 <body>
 	<nav class="navbar navbar-dark bg-default"> <a id="title"

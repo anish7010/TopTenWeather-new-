@@ -28,6 +28,7 @@
 		<button onclick = "getFav()" class="btn btn-secondary my-2 my-sm-0" type="button">Show favorites</button>
 		</nav>
 
+<!-- hero image and form in front -->
 	<div class="hero-image">
 		<div class="hero-text">
 			<form id="search" class="form-inline my-2 my-lg-0">

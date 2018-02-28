@@ -49,15 +49,15 @@ function addFav(){
 }
 
 function getFav(){
-	var xmlhttp1 = new XMLHttpRequest();
-	xmlhttp1.onreadystatechange = function(){
-		if(xml1http.readyState == 4 && xml1http.status == 200){
-			document.getElementById("favorites").innerHTML = xmlhttp1.responseText;
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function(){
+		if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
+			document.getElementById("favorites").innerHTML = xmlhttp.responseText;
 		}
 	};
 	//values to be sent to servlet
 	var values = "city=" +city+ "&country=" +country+ "&temperature=" +temperature+ "&conditions=" +conditions+ "&longitude=" +longitude+ "&latitude="+latitude;
-	xmlhttp1.open('GET',"http://localhost:8084/TopTen/readjson", true);
-	xmlhttp1.send();
+	xmlhttp.open('GET',"http://localhost:8084/TopTen/readjson", true);
+	xmlhttp.send();
 }
 

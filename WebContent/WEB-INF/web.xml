@@ -10,13 +10,5 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <servlet>
-        <servlet-name>readjson</servlet-name>
-        <servlet-class>ReadJson</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>readjson</servlet-name>
-        <url-pattern>/readjson</url-pattern>
-    </servlet-mapping>
-  
+ 
 </web-app>

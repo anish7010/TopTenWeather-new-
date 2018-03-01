@@ -18,7 +18,7 @@ function getData() {
 			longitude = result.coord.lon;
 			latitude = result.coord.lat;
 			//html for making a card
-			var html = "<div class=\"card\" style=\"width: 18rem;\">"+
+			var html = "<div id = \"card\" class=\"card\" style=\"width: 18rem;\">"+
 			  			"<div class=\"card-body\">"+
 			  			"<h5 class=\"card-title\">"+city+", "+country+"</h5>"+
 			  			"<p class=\"card-text\">Temperature : "+temperature+"<br>Conditions : "+conditions+"<br>Longitude : "+longitude+"<br>Latitude : "+latitude+"</p>"+
@@ -53,6 +53,7 @@ function getFav(){
 	xmlhttp.onreadystatechange = function(){
 		if(xmlhttp.readyState == 4 && xmlhttp.status == 200){
 			document.getElementById("favorites").innerHTML = xmlhttp.responseText;
+			document.getElementById("card").innerHTML = "";
 		}
 	};
 	//values to be sent to servlet

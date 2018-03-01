@@ -8,21 +8,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
+
 
 @WebServlet("/favorite")
 public class ParseJson extends HttpServlet {
+	//global array
+	JSONArray jarray = new JSONArray();
 	private static final long serialVersionUID = 1L;
 	//array of json objects
-	JSONArray jarray = new JSONArray();
-	
     public ParseJson() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//now first we will read the file and then check the count
+		JSONObject json = new JSONObject();
+		
 		//setting response type
 		response.setContentType("application/json");
 		String city = request.getParameter("city");
@@ -35,22 +40,19 @@ public class ParseJson extends HttpServlet {
 		String longitude = request.getParameter("longitude");
 		String latitude = request.getParameter("latitude");
 		//json object to store key value pairs
-		JSONObject json = new JSONObject();
-		try {
+		
 			json.put("city", city);
 			json.put("country", country);
 			json.put("temperature", temperature);
 			json.put("conditions", conditions);
 			json.put("longitude", longitude);
 			json.put("latitude", latitude);
-			
-		} catch (JSONException e) {
-			System.out.println("Wrong element inserted");
-		}
+						
 		//if length exceeds 10, warning message is issued
-		if(jarray.length() < 10) {
-			jarray.put(json);
+		if(jarray.size() < 10) {
+			jarray.add(json);
 		}
+		
 		else {
 			System.out.println("You have exceeded your limit");
 		}

@@ -33,7 +33,7 @@ public class ReadJson extends HttpServlet {
 				for(int i=0;i<arr.size();i++) {
 					obj=(JSONObject) arr.get(i);
 					s = (String)obj.get("city");
-					out.println(s);
+					out.println((i+1)+"."+s+"<button type = \"button\" class = btn-danger>Remove</button><br>");
 	    	}
 				
 			} catch (ParseException e) {

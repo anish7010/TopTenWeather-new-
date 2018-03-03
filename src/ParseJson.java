@@ -60,7 +60,7 @@ public class ParseJson extends HttpServlet {
 		FileWriter jsonFile=null;
 		
 		try {
-		jsonFile =  new FileWriter("/home/sapient/Documents/favorites.json");
+		jsonFile =  new FileWriter("/home/anish7010/Documents/favorites.json");
 		jsonFile.write(jarray.toString());
 		System.out.println(json.toString());
 		}catch(Exception e){

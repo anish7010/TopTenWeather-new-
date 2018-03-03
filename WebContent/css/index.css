@@ -20,6 +20,10 @@ body, html {
 	text-align: center;
 }
 
+#remove_button{
+	margin-left:50px;
+}
+
 .hero-image {
   background-image: url("../images/rain.jpg");
   height: 40%;

@@ -28,17 +28,17 @@ public class ReadJson extends HttpServlet {
     	JSONObject obj = new JSONObject();
     	JSONArray arr = new JSONArray();
     	try {
-				arr = (JSONArray)parser.parse(new FileReader("/home/sapient/Documents/favorites.json"));
+				arr = (JSONArray)parser.parse(new FileReader("/home/anish7010/Documents/favorites.json"));
 				String s;
 				for(int i=0;i<arr.size();i++) {
 					obj=(JSONObject) arr.get(i);
 					s = (String)obj.get("city");
-					out.println((i+1)+"."+s+"<button type = \"button\" class = btn-danger>Remove</button><br>");
+					// sending the index of the object to be deleted	
+					out.println((i+1)+"."+s+"<button type = \"button\" onclick = \"removeFav("+i+")\" id = \"remove_button\" class = \"btn btn-outline-danger\">Remove</button><br>");
 	    	}
 				
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+					System.out.println("Please enter a valid path");
 			}
     	
     

@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,13 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 
 @WebServlet("/favorite")
 public class ParseJson extends HttpServlet {
-	//global array
-	JSONArray jarray = new JSONArray();
 	private static final long serialVersionUID = 1L;
 	//array of json objects
     public ParseJson() {
@@ -25,9 +26,11 @@ public class ParseJson extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//now first we will read the file and then check the count
-		JSONObject json = new JSONObject();
-		
+		//defining an object,array and a parser
+		JSONObject jsonObj = new JSONObject();
+		JSONArray jarray = new JSONArray();
+		JSONParser parser = new JSONParser();
+			
 		//setting response type
 		response.setContentType("application/json");
 		String city = request.getParameter("city");
@@ -39,35 +42,45 @@ public class ParseJson extends HttpServlet {
 		String conditions = request.getParameter("conditions");
 		String longitude = request.getParameter("longitude");
 		String latitude = request.getParameter("latitude");
-		//json object to store key value pairs
+		//storing key value pairs getting from GET
+		jsonObj.put("city", city);
+		jsonObj.put("country", country);
+		jsonObj.put("temperature", temperature);
+		jsonObj.put("conditions", conditions);
+		jsonObj.put("longitude", longitude);
+		jsonObj.put("latitude", latitude);
 		
-			json.put("city", city);
-			json.put("country", country);
-			json.put("temperature", temperature);
-			json.put("conditions", conditions);
-			json.put("longitude", longitude);
-			json.put("latitude", latitude);
-						
+		File f = new File("/home/anish7010/Documents/favorites.json");
+		if(f.exists()) {
+			//wont happen ever because we checked the conditions already above
+			try {
+				//if array exists take the values else make a new file
+				jarray = (JSONArray)parser.parse(new FileReader("/home/anish7010/Documents/favorites.json"));
+			} catch (ParseException e) {
+				//wont reach here ever
+			}
+		}
+		
 		//if length exceeds 10, warning message is issued
 		if(jarray.size() < 10) {
-			jarray.add(json);
+			jarray.add(jsonObj);
+			FileWriter jsonFile=null;
+			try {
+				//over writing the previous file
+				jsonFile =  new FileWriter("/home/anish7010/Documents/favorites.json");
+				jsonFile.write(jarray.toString());
+				System.out.println(jsonObj.toString());
+			}catch(Exception e){
+				System.out.println("Please enter a valid path where you want to store your json");
+			}finally {
+				jsonFile.flush();
+			}
 		}
 		
 		else {
 			System.out.println("You have exceeded your limit");
 		}
 		
-		FileWriter jsonFile=null;
-		
-		try {
-		jsonFile =  new FileWriter("/home/anish7010/Documents/favorites.json");
-		jsonFile.write(jarray.toString());
-		System.out.println(json.toString());
-		}catch(Exception e){
-			System.out.println("Please enter a valid path where you want to store your json");
-		}finally {
-			jsonFile.flush();
-		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

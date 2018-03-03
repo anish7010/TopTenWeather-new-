@@ -24,7 +24,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-dark bg-default"> <a id="title"
-		class="navbar-brand" href="#"><i class="fas fa-bolt"></i>&nbsp;KnowWeather.com</a>
+		class="navbar-brand" href="index.jsp"><i class="fas fa-bolt"></i>&nbsp;KnowWeather.com</a>
 		<button onclick = "getFav()" class="btn btn-secondary my-2 my-sm-0" type="button">Show favorites</button>
 		</nav>
 
@@ -45,11 +45,6 @@
 
 
 	<div id="favorites"></div>
-
-
-
-
-
 
 	<!-- bootstrap javascript -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

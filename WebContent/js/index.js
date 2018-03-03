@@ -40,6 +40,8 @@ function getData() {
 
 			// content to be replaced
 			document.getElementById("content").innerHTML = html;
+			//favorites list to be hidden
+			document.getElementById("favorites").innerHTML = "";
 		}
 	};
 	xhttp.open("GET", link, true);
@@ -89,7 +91,7 @@ function removeFav(i){
 			document.getElementById("favorites").innerHTML = xmlhttp.responseText;
 		}
 	};
-
+	//passing the value of the index
 	xmlhttp.open('POST', "http://localhost:8080/TopTen/deletejson?value="+i, true);
 	xmlhttp.send();
 }

@@ -27,16 +27,22 @@ public class ReadJson extends HttpServlet {
     	JSONParser parser = new JSONParser(); 
     	JSONObject obj = new JSONObject();
     	JSONArray arr = new JSONArray();
+    	
     	try {
+    		//reading values from the file
 				arr = (JSONArray)parser.parse(new FileReader("/home/anish7010/Documents/favorites.json"));
-				String s;
-				for(int i=0;i<arr.size();i++) {
-					obj=(JSONObject) arr.get(i);
-					s = (String)obj.get("city");
-					// sending the index of the object to be deleted	
-					out.println((i+1)+"."+s+"<button type = \"button\" onclick = \"removeFav("+i+")\" id = \"remove_button\" class = \"btn btn-outline-danger\">Remove</button><br>");
-	    	}
 				
+				if(arr.size() == 0)
+					out.print("You havent added any favorites");
+				else {
+					String s;
+					for(int i=0;i<arr.size();i++) {
+						obj=(JSONObject) arr.get(i);
+						s = (String)obj.get("city");
+						// sending the index of the object to be deleted	
+						out.println((i+1)+"."+s+"<button type = \"button\" onclick = \"removeFav("+i+")\" id = \"remove_button\" class = \"btn btn-outline-danger\">Remove</button><br>");
+		    	}
+				}
 			} catch (ParseException e) {
 					System.out.println("Please enter a valid path");
 			}

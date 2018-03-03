@@ -24,6 +24,7 @@ public class DeleteJson extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		String value = request.getParameter("value");
+		
 		//index to be deleted
 		int index = Integer.parseInt(value);
 		JSONParser parser = new JSONParser(); 
